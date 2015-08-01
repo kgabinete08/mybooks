@@ -1,0 +1,19 @@
+!!! 5
+%html(lang="en-US")
+  %head
+    %title MyBooks - a book manager app
+    %meta(charset="UTF-8")
+    %meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    = csrf_meta_tag
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+  %body
+    %header
+      = render 'shared/header'
+    %section.content.clearfix
+      = render 'shared/messages'
+      = yield
+    %footer.navbar-fixed-bottom
+      .container.col-md-10.col-md-offset-1
+        %center
+          &copy 2015 MyBooks

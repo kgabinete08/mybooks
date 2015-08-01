@@ -1,0 +1,14 @@
+== README
+
+This is my personal project for Tealeaf Academy's third course.  The basic idea of the application is to manage books that have been previously read and books that a user plans to read in the future.
+
+Planned features:
+
+- Library for browsing and adding books
+- Previously read queue
+- Reading queue
+- personal notes on a book
+- reviews and ratings that can be shared between user
+- possibly e-commerce features
+
+Hopefully this documentation will be updated later on once the app is completed.
