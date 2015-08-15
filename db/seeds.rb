@@ -33,3 +33,5 @@ Book.create!(title: 'The Da Vinci Code',
              description: 'Professor Langdon searches for the Holy Grail.',
              small_cover_url: '/tmp/the-da-vinci-code.jpg',
              category: crime_fiction)
+
+test_user = User.create!(email: 'test@abc.com', password: 'password', username: 'Tester')
