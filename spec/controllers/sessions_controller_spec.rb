@@ -56,7 +56,7 @@ describe SessionsController do
     end
 
     it "redirects to the sign in page" do
-      expect(response).to redirect_to sign_in_path
+      expect(response).to redirect_to root_path
     end
   end
 end
