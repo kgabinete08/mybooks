@@ -5,5 +5,6 @@
       .books_category.row
         - category.books.each do |book|
           .book.col-sm-3
-            = image_tag book.small_cover_url
-            %h5= book.title
+            = link_to book, nil do
+              = image_tag book.small_cover_url
+              %h5= book.title

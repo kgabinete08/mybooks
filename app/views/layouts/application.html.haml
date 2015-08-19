@@ -10,10 +10,10 @@
   %body
     %header
       = render 'shared/header'
-    %section.content.clearfix
+    .container
       = render 'shared/messages'
       = yield
-    %footer.navbar-fixed-bottom
+    %footer
       .container.col-md-10.col-md-offset-1
         %center
           &copy 2015 MyBooks
