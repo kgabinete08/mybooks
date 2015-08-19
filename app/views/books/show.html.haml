@@ -1,0 +1,14 @@
+%article.video
+  .container
+    .row
+      .video_large_cover.col-sm-5.col-sm-offset-1
+        %img(src="/tmp/book-large-cover.jpg")
+      .book_info.col-sm-4
+        %header
+          %h3= @book.title
+          %span Rating: 4.0/5.0
+        %p= @book.description
+        .actions
+          %button.btn.btn-primary(href="#") + Add to Queue
+          %button.btn.btn-danger(href="#") Mark as Read
+
