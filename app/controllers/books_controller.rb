@@ -7,5 +7,6 @@ class BooksController < ApplicationController
 
   def show
     @book = Book.find(params[:id])
+    @note = current_user.notes.find_by(book_id: @book.id)
   end
 end

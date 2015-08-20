@@ -28,10 +28,12 @@ Book.create!(title: 'The Girl with the Dragon Tattoo',
              small_cover_url: '/tmp/girl-with-the-dragon-tattoo.jpg',
              category: crime_fiction)
 
-Book.create!(title: 'The Da Vinci Code',
-             author: 'Dan Brown',
-             description: 'Professor Langdon searches for the Holy Grail.',
-             small_cover_url: '/tmp/the-da-vinci-code.jpg',
-             category: crime_fiction)
+da_vinci_code = Book.create!(title: 'The Da Vinci Code',
+                             author: 'Dan Brown',
+                             description: 'Professor Langdon searches for the Holy Grail.',
+                             small_cover_url: '/tmp/the-da-vinci-code.jpg',
+                             category: crime_fiction)
 
 test_user = User.create!(email: 'test@abc.com', password: 'password', username: 'Tester')
+
+Note.create!(user: test_user, book: da_vinci_code, content: "Robert Langdon has an eidetic memory.")

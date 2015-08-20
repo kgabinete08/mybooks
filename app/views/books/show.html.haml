@@ -7,8 +7,17 @@
         %header
           %h3= @book.title
           %span Rating: 4.0/5.0
+        %h4 Description
         %p= @book.description
         .actions
-          %button.btn.btn-primary(href="#") + Add to Queue
+          %button.btn.btn-success(href="#") + Add to Queue
           %button.btn.btn-danger(href="#") Mark as Read
+        .book_notes
+          %h4 Notes
+          %p= @note.content unless @note.blank?
+          - if @note.blank?
+            = link_to "Add note", new_note_path, class: "btn btn-primary"
+          - else
+            = link_to "Edit note", edit_note_path, class: "btn btn-primary"
+
 

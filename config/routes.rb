@@ -8,4 +8,5 @@ Mybooks::Application.routes.draw do
   resources :books, only: [:show]
   resources :users, only: [:create]
   resources :sessions, only: [:create]
+  resources :notes, except: [:destroy]
 end
