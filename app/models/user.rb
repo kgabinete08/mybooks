@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :username, presence: true, uniqueness: true
   validates_presence_of :password
 
-  has_many :notes
+  has_many :reviews
 
   has_secure_password validations: false
 end

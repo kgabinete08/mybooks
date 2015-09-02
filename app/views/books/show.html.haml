@@ -12,12 +12,38 @@
         .actions
           %button.btn.btn-success(href="#") + Add to Queue
           %button.btn.btn-danger(href="#") Mark as Read
-        .book_notes
-          %h4 Notes
-          %p= @note.content unless @note.blank?
-          - if @note.blank?
-            = link_to "Add note", new_note_path, class: "btn btn-primary"
-          - else
-            = link_to "Edit note", edit_note_path, class: "btn btn-primary"
+
+%section.reviews
+  .container
+    .row
+      .col-sm-10.col-sm-offset-1
+        = bootstrap_form_for [@book, Review.new] do |f|
+          %fieldset
+            .form-group
+              = f.label "Rate this book"
+              .row
+                .col-sm-3
+                  = f.select :rating, (1..5), {}, { class: "form-control" }
+            .form-group
+              .row
+                .col-sm-10
+                  = f.text_area :content, rows: 6, class: "form-control", label: "Write Review"
+          %fieldset.form-group.clearfix
+            = f.submit :Submit, class: "btn"
+            = link_to :Cancel, @book
+        %header
+          %h4 User Reviews (#{@reviews.count})
+        .book-reviews.list-group
+          - @reviews.each do |review|
+            %article.review.row
+              .col-sm-2
+                %span Rating: #{review.rating} / 5
+                %p
+                  by:
+                  = link_to review.user.username
+              .col-sm-8
+                %p #{review.content}
+
+
 
 
