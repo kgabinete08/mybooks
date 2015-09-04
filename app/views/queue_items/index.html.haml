@@ -1,0 +1,26 @@
+%section.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      %article
+        %header
+          %h2 Reading Queue
+        = form_tag update_queue_path do
+          %table.table.table-striped
+            %thead
+              %tr
+                %th(width="20%") List Order
+                %th(width="30%") Book Title
+                %th(width="20%") Rating
+                %th(width="20%") Category
+                %th(width="10%") Remove
+            %tbody
+              - @queue_items.each do |queue_item|
+                %tr
+                  %td
+                  %td
+                    = link_to queue_item.book_title, queue_item.book
+                  %td = queue_item.rating
+                  %td
+                    = link_to queue_item.category_name, queue_item.category
+                  %td
+          = submit_tag 'Update Queue', class: 'btn btn-danger'
