@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :queue_items
 
   has_secure_password validations: false
+
+  def queued_book?(book)
+    queue_items.map(&:book).include?(book)
+  end
 end
