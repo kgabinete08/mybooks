@@ -10,7 +10,7 @@
         %h4 Description
         %p= @book.description
         .actions
-          %button.btn.btn-success(href="#") + Add to Queue
+          = link_to "+ Add to Queue", queue_items_path(book_id: @book.id), method: :post, class: "btn btn-success"
           %button.btn.btn-danger(href="#") Mark as Read
 
 %section.reviews
@@ -23,7 +23,7 @@
               = f.label "Rate this book"
               .row
                 .col-sm-3
-                  = f.select :rating, (1..5), {}, { class: "form-control" }
+                  = f.select :rating, options_for_rating, {}, { class: "form-control" }
             .form-group
               .row
                 .col-sm-10

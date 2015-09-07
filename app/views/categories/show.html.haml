@@ -1,0 +1,9 @@
+.books.container-fluid
+  %section.col-md-10.col-md-offset-1
+    %h3= @category.name
+    .books_category.row
+      - @category.books.each do |book|
+        .book.col-sm-3
+          = link_to book, nil do
+            = image_tag book.small_cover_url
+            %h5= book.title
