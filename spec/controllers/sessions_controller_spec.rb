@@ -13,7 +13,7 @@ describe SessionsController do
       end
 
       it "sets the flash success message" do
-        expect(flash[:success]).not_to be_blank
+        expect(flash[:success]).to be_present
       end
 
       it "redirects to the home page" do
@@ -32,7 +32,7 @@ describe SessionsController do
       end
 
       it "sets the flash danger message" do
-        expect(flash[:danger]).not_to be_blank
+        expect(flash[:danger]).to be_present
       end
 
       it "redirects to the sign in path" do
@@ -52,7 +52,7 @@ describe SessionsController do
     end
 
     it "sets the flash success message" do
-      expect(flash[:success]).not_to be_blank
+      expect(flash[:success]).to be_present
     end
 
     it "redirects to the sign in page" do

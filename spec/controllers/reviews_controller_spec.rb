@@ -30,7 +30,7 @@ describe ReviewsController do
         end
 
         it "sets the flash message" do
-          expect(flash).not_to be_empty
+          expect(flash).to be_present
         end
 
         it "redirects to the book show page" do
@@ -46,7 +46,7 @@ describe ReviewsController do
 
         it "sets the flash message" do
           post :create, review: { rating: 1 }, book_id: book.id
-          expect(flash).not_to be_empty
+          expect(flash).to be_present
         end
 
         it "renders the books/show template" do

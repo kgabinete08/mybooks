@@ -5,6 +5,8 @@ class QueueItem < ActiveRecord::Base
   delegate :category, to: :book
   delegate :title, to: :book, prefix: :book
 
+  validates :position, numericality: { only_integer: true }
+
   def rating
     review = Review.find_by(user_id: user.id, book_id: book.id)
     review.rating if review

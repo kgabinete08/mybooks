@@ -23,7 +23,7 @@
               = f.label "Rate this book"
               .row
                 .col-sm-3
-                  = f.select :rating, (1..5), {}, { class: "form-control" }
+                  = f.select :rating, options_for_rating, {}, { class: "form-control" }
             .form-group
               .row
                 .col-sm-10

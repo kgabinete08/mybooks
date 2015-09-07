@@ -3,14 +3,9 @@ require 'spec_helper'
 describe QueueItem do
   it { should belong_to(:user) }
   it { should belong_to(:book) }
-
-  describe "#book_title" do
-    it "returns the title of the associated book" do
-      book = Fabricate(:book, title: 'Outliers')
-      queue_item = Fabricate(:queue_item, book: book)
-      expect(queue_item.book_title).to eq('Outliers')
-    end
-  end
+  it { should delegate_method(:category).to(:book) }
+  it { should delegate_method(:title).to(:book).with_prefix(:book) }
+  it { should validate_numericality_of(:position).only_integer }
 
   describe "#rating" do
     it "returns the rating from the review when a review is present" do
@@ -35,15 +30,6 @@ describe QueueItem do
       book = Fabricate(:book, category: action)
       queue_item = Fabricate(:queue_item, book: book)
       expect(queue_item.category_name).to eq('Action')
-    end
-  end
-
-  describe "#category" do
-    it "returns the category of the associated book" do
-      category = Fabricate(:category)
-      book = Fabricate(:book, category: category)
-      queue_item = Fabricate(:queue_item, book: book)
-      expect(queue_item.category).to eq(category)
     end
   end
 end
