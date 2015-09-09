@@ -22,4 +22,17 @@ describe BooksController do
       expect(assigns(:reviews)).to match_array([review1, review2])
     end
   end
+
+  describe "GET search" do
+    it_behaves_like "requires sign in" do
+      let(:action) { get :search, keyword: 'Hello' }
+    end
+
+    it "sets @results for authenticated user" do
+      set_current_user
+      outliers = Fabricate(:book, title: "Outliers")
+      get :search, keyword: 'out'
+      expect(assigns(:results)).to eq([outliers])
+    end
+  end
 end

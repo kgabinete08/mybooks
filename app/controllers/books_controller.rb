@@ -9,4 +9,8 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @reviews = @book.reviews
   end
+
+  def search
+    @results = Book.search_by_title(params[:keyword])
+  end
 end

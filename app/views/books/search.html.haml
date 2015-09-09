@@ -1,9 +1,8 @@
 .books.container-fluid
   %section.col-md-10.col-md-offset-1
-    %h3= @category.name
-    .books_category.row
-      - @category.recent_books.each do |book|
+    .row
+      - @results.each do |book|
         .book.col-sm-3
-          = link_to book, nil do
+          = link_to book, class: "text-info" do
             = image_tag book.small_cover_url
             %h5= book.title
