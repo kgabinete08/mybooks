@@ -76,66 +76,52 @@ describe QueueItemsController do
       let(:action) { post :update_queue, queue_items: [{id: 1, position: 2}, {id: 2, position: 1}] }
     end
 
-    let(:bob) { Fabricate(:user) }
-    let(:queue_item1) { Fabricate(:queue_item, user: bob, position: 1) }
-    let(:queue_item2) { Fabricate(:queue_item, user: bob, position: 2) }
 
-    before { set_current_user(bob) }
 
     context "with valid input" do
+      let(:bob) { Fabricate(:user) }
+      let(:book) { Fabricate(:book) }
+      let(:queue_item1) { Fabricate(:queue_item, user: bob, position: 1, book: book) }
+      let(:queue_item2) { Fabricate(:queue_item, user: bob, position: 2, book: book) }
+
+      before { set_current_user(bob) }
+
       it "redirect to the reading queue page" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2}, {id: queue_item2, position: 1}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2}, {id: queue_item2.id, position: 1}]
         expect(response).to redirect_to reading_queue_path
       end
 
       it "reorders the queue items" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2}, {id: queue_item2, position: 1}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2}, {id: queue_item2.id, position: 1}]
         expect(bob.queue_items).to eq([queue_item2, queue_item1])
       end
 
       it "normalizes the order of position numbers" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2}, {id: queue_item2, position: 3}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2}, {id: queue_item2.id, position: 3}]
         expect(bob.queue_items.map(&:position)).to eq([1, 2])
       end
     end
 
     context "with invalid input" do
+      let(:bob) { Fabricate(:user) }
+      let(:book) { Fabricate(:book) }
+      let(:queue_item1) { Fabricate(:queue_item, user: bob, position: 1, book: book) }
+      let(:queue_item2) { Fabricate(:queue_item, user: bob, position: 2, book: book) }
+
+      before { set_current_user(bob) }
+
       it "redirects to the reading queue page" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2.5}, {id: queue_item2, position: 3}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2.5}, {id: queue_item2.id, position: 3}]
         expect(response).to redirect_to reading_queue_path
       end
 
       it "sets the flash error message" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2.5}, {id: queue_item2, position: 3}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2.5}, {id: queue_item2.id, position: 3}]
         expect(flash[:danger]).to be_present
       end
 
       it "does not reorder the queue items" do
-        bob = Fabricate(:user)
-        set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: bob, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 3}, {id: queue_item2, position: 2.5}]
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 3}, {id: queue_item2.id, position: 2.5}]
         expect(queue_item1.reload.position).to eq(1)
       end
     end
@@ -144,10 +130,11 @@ describe QueueItemsController do
       it "does not modify the queue items" do
         max = Fabricate(:user)
         bob = Fabricate(:user)
+        book = Fabricate(:book)
         set_current_user(bob)
-        queue_item1 = Fabricate(:queue_item, user: max, position: 1)
-        queue_item2 = Fabricate(:queue_item, user: bob, position: 2)
-        post :update_queue, queue_items: [{id: queue_item1, position: 2}, {id: queue_item2, position: 1}]
+        queue_item1 = Fabricate(:queue_item, user: max, position: 1, book: book)
+        queue_item2 = Fabricate(:queue_item, user: bob, position: 2, book: book)
+        post :update_queue, queue_items: [{id: queue_item1.id, position: 2}, {id: queue_item2.id, position: 1}]
         expect(queue_item1.reload.position).to eq(1)
       end
     end

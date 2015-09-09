@@ -18,7 +18,7 @@
                 %tr
                   = hidden_field_tag "queue_items[][id]", queue_item.id
                   %td
-                    = text_field_tag "queue_items[][position]", queue_item.position, class: "col-sm-3"
+                    = text_field_tag "queue_items[][position]", queue_item.position, class: "form-control"
                   %td
                     = link_to queue_item.book_title, queue_item.book
                   %td
