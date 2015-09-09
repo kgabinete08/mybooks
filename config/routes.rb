@@ -7,6 +7,9 @@ Mybooks::Application.routes.draw do
   get '/reading_queue', to: 'queue_items#index'
 
   resources :books, only: [:show] do
+    collection do
+      get '/search', to: 'books#search'
+    end
     resources :reviews, only: [:create]
   end
 
