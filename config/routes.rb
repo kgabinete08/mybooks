@@ -5,6 +5,7 @@ Mybooks::Application.routes.draw do
   get '/sign_in', to: 'sessions#new'
   get '/sign_out', to: 'sessions#destroy'
   get '/reading_queue', to: 'queue_items#index'
+  get '/archives', to: 'archives#index'
 
   resources :books, only: [:show] do
     collection do
@@ -18,5 +19,6 @@ Mybooks::Application.routes.draw do
   resources :notes, except: [:destroy]
   resources :categories, only: [:show]
   resources :queue_items, only: [:create, :destroy]
+  resources :archives, only: [:create]
   post 'update_queue', to: 'queue_items#update_queue'
 end

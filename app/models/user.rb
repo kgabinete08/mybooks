@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 
   has_many :reviews
   has_many :queue_items, -> { order(:position) }
+  has_many :archives, -> { order("created_at DESC")}
 
   has_secure_password validations: false
 
@@ -20,5 +21,9 @@ class User < ActiveRecord::Base
     queue_items.each_with_index do |queue_item, idx|
       queue_item.update!(position: idx + 1)
     end
+  end
+
+  def previously_read_books
+    archives
   end
 end

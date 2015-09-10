@@ -2,6 +2,7 @@ class Book < ActiveRecord::Base
   belongs_to :category
 
   has_many :reviews, -> { order("created_at DESC") }
+  has_many :archives
 
   validates_presence_of :title
 
