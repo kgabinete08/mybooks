@@ -1,0 +1,8 @@
+.books.container-fluid
+  %section.col-md-10.col-md-offset-1
+    .row
+      - @archives.each do |archive|
+        .book.col-sm-3
+          = link_to archive.book, class: "text-info" do
+            = image_tag archive.book.small_cover_url
+            %h5= archive.book.title

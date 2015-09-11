@@ -1,0 +1,2 @@
+Fabricator(:archive) do
+end

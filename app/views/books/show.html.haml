@@ -11,7 +11,12 @@
         %p= @book.description
         .actions
           = link_to "+ Add to Queue", queue_items_path(book_id: @book.id), method: :post, class: "btn btn-success"
-          %button.btn.btn-danger(href="#") Mark as Read
+          - if current_user.archived_book?(@book)
+            %button.btn.btn-danger(disabled="disabled")
+              Marked as read
+          - else
+            = link_to "Mark as read", archives_path(book_id: @book.id), method: :post, class: "btn btn-danger"
+
 
 %section.reviews
   .container

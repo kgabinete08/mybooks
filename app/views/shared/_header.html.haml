@@ -19,8 +19,7 @@
               %li
                 = link_to 'Reading Queue', reading_queue_path
               %li
-                %a(href="#")
-                  Archives
+                = link_to 'Archives', archives_path
             = form_tag search_books_path, method: :get, class: "navbar-form navbar-left" do
               .form-group
                 = text_field_tag :keyword, nil, placeholder: "Search", class: "form-control"
