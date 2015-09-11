@@ -26,4 +26,8 @@ class User < ActiveRecord::Base
   def previously_read_books
     archives
   end
+
+  def archived_book?(book)
+    archives.map(&:book).include?(book)
+  end
 end
