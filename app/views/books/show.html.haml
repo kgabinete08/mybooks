@@ -10,7 +10,11 @@
         %h4 Description
         %p= @book.description
         .actions
-          = link_to "+ Add to Queue", queue_items_path(book_id: @book.id), method: :post, class: "btn btn-success"
+          - if current_user.queued_book?(@book)
+            %button.btn.btn-success(disabled="disable")
+              Currently in queue
+          - else
+            = link_to "+ Add to Queue", queue_items_path(book_id: @book.id), method: :post, class: "btn btn-success"
           - if current_user.archived_book?(@book)
             %button.btn.btn-danger(disabled="disabled")
               Marked as read
