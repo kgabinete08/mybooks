@@ -21,13 +21,13 @@ describe Category do
       expect(action.recent_books.count).to eq(3)
     end
 
-    it "returns 5 books if there more than 5 items in a category" do
+    it "returns 4 books if there more than 4 items in a category" do
       6.times { Fabricate(:book, category: action) }
-      expect(action.recent_books.count).to eq(5)
+      expect(action.recent_books.count).to eq(4)
     end
 
-    it "returns the 5 most recent books" do
-      5.times { Fabricate(:book, category: action) }
+    it "returns the 4 most recent books" do
+      4.times { Fabricate(:book, category: action) }
       book = Fabricate(:book, category: action, created_at: 1.day.ago)
       expect(action.recent_books).not_to include(book)
     end

@@ -1,6 +1,6 @@
 .books.container-fluid
   - @categories.each do |category|
-    %section.col-md-10.col-md-offset-1
+    %section.col-sm-10.col-sm-offset-1
       %h3
         = link_to category.name, category, class: "text-info"
       .books_category.row

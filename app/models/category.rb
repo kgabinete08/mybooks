@@ -4,6 +4,6 @@ class Category < ActiveRecord::Base
   validates_presence_of :name
 
   def recent_books
-    books.first(5)
+    books.first(4)
   end
 end
