@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_filter :require_user
+  before_action :require_user
 
   def create
     @book = Book.find(params[:book_id])

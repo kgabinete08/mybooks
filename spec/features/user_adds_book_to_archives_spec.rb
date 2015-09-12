@@ -2,9 +2,9 @@ require 'spec_helper'
 
 feature 'User adds book to archives' do
   scenario 'user marks book as read' do
-    fantasy       = Fabricate(:category)
-    twilight      = Fabricate(:book, category: fantasy)
-    eclipse       = Fabricate(:book, category: fantasy)
+    fantasy  = Fabricate(:category)
+    twilight = Fabricate(:book, category: fantasy)
+    eclipse  = Fabricate(:book, category: fantasy)
 
     sign_in
 

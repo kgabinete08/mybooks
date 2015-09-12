@@ -6,7 +6,7 @@ describe Book do
   it { should have_many(:reviews).order("created_at DESC") }
   it { should have_many(:archives) }
 
-  describe "search_by_title" do
+  describe ".search_by_title" do
     it "returns an empty array when there is no match" do
       outliers = Fabricate(:book, title: "Outliers")
       dragon = Fabricate(:book, title: "Girl with a Dragon Tattoo")

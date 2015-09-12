@@ -23,7 +23,7 @@ describe QueueItem do
     end
   end
 
-  describe "rating=" do
+  describe "#rating=" do
     let(:user) { Fabricate(:user) }
     let(:book) { Fabricate(:book) }
 
