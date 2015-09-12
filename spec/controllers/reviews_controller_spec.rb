@@ -10,6 +10,7 @@ describe ReviewsController do
 
     context "with authenticated users" do
       let(:current_user) { Fabricate(:user) }
+
       before { set_current_user(current_user) }
 
       context "with valid input" do

@@ -4,6 +4,7 @@ describe Book do
   it { should validate_presence_of(:title) }
   it { should belong_to(:category) }
   it { should have_many(:reviews).order("created_at DESC") }
+  it { should have_many(:archives) }
 
   describe "search_by_title" do
     it "returns an empty array when there is no match" do

@@ -8,14 +8,14 @@ describe BooksController do
       let(:action) { get :show, id: book.id }
     end
 
+    before { set_current_user }
+
     it "sets @book for authenticated users" do
-      set_current_user
       get :show, id: book.id
       expect(assigns(:book)).to eq(book)
     end
 
     it "sets @reviews for authenticated users" do
-      set_current_user
       review1 = Fabricate(:review, book: book)
       review2 = Fabricate(:review, book: book)
       get :show, id: book.id
