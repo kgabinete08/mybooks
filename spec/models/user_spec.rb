@@ -8,6 +8,7 @@ describe User do
   it { should validate_uniqueness_of(:username) }
   it { should have_many(:reviews) }
   it { should have_many(:queue_items).order(:position) }
+  it { should have_many(:archives).order("created_at DESC") }
 
   describe "#previously_read_books" do
     it "returns an empty array when there no books marked as previously read" do

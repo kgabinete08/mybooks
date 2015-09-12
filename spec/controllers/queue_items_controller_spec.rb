@@ -76,8 +76,6 @@ describe QueueItemsController do
       let(:action) { post :update_queue, queue_items: [{id: 1, position: 2}, {id: 2, position: 1}] }
     end
 
-
-
     context "with valid input" do
       let(:bob) { Fabricate(:user) }
       let(:book) { Fabricate(:book) }
